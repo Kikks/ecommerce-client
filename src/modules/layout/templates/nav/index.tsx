@@ -1,17 +1,16 @@
 import { useMobileMenu } from "@lib/context/mobile-menu-context"
 import Hamburger from "@modules/common/components/hamburger"
 import CartDropdown from "@modules/layout/components/cart-dropdown"
-import DropdownMenu from "@modules/layout/components/dropdown-menu"
 import MobileMenu from "@modules/mobile-menu/templates"
 import DesktopSearchModal from "@modules/search/templates/desktop-search-modal"
 import clsx from "clsx"
 import Link from "next/link"
-import { useRouter } from "next/router"
+// import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
 const Nav = () => {
-  const { pathname } = useRouter()
-  const [isHome, setIsHome] = useState(false)
+  // const { pathname } = useRouter()
+  const [isHome, _setIsHome] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
   //useEffect that detects if window is scrolled > 5px on the Y axis
@@ -33,9 +32,9 @@ const Nav = () => {
     }
   }, [isHome])
 
-  useEffect(() => {
-    pathname === "/" ? setIsHome(true) : setIsHome(false)
-  }, [pathname])
+  // useEffect(() => {
+  //   pathname === "/" ? setIsHome(true) : setIsHome(false)
+  // }, [pathname])
 
   const { toggle } = useMobileMenu()
 
@@ -61,12 +60,9 @@ const Nav = () => {
             }
           )}
         >
-          <div className="flex-1 basis-0 h-full flex items-center">
-            <div className="block small:hidden">
+          <div className="small:hidden flex-1 basis-0 h-full flex items-center">
+            <div className="block">
               <Hamburger setOpen={toggle} />
-            </div>
-            <div className="hidden small:block h-full">
-              <DropdownMenu />
             </div>
           </div>
 
